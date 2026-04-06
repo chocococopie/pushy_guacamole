@@ -93,7 +93,6 @@ int	handle_args(int argc, char **argv, t_stack *a)
 		if (!args)
 			return (0);
 
-		// instead of count_args() ↓
 		while (args[count])
 			count++;
 		if (!fill_stack(a, args, count))

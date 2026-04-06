@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-// stack_size()
-
 int	stack_size(t_stack *s)
 {
 	if (!s)

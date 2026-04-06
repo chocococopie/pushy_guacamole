@@ -52,14 +52,11 @@ char	**ft_split(char const *s, char c)
 	start = 0;
 	while (i < words)
 	{
-		/* Skip delimiters */
 		while (s[start] == c)
 			start++;
-		/* Find word length */
 		len = 0;
 		while (s[start + len] && s[start + len] != c)
 			len++;
-		/* Copy word */
 		result[i] = copy_word(s, start, len);
 		if (!result[i])
 		{
