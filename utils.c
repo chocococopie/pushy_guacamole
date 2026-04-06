@@ -12,8 +12,10 @@ int		is_numeric(char *str)
 	i = 0;
 	if (!str || !*str)
 		return (0);
-	if (str[0] == '-' || str[0] == '+')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (!str[i])
+		return (0);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

@@ -1,26 +1,26 @@
 NAME = push_swap
 
-SRC = main.c indexes.c operations_helpers.c operations.c parser.c radix.c sorting.c split.c
+SRC = main.c indexes.c operations_helpers.c operations.c parser.c radix.c sorting.c split.c error_and_free.c utils.c
 
-OBJS = ${SRC:.c=.o}
+OBJS = $(SRC:.c=.o)
 
 CC = cc
-RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
 
-.o:.c
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+all: $(NAME)
 
-$(NAME): ${OBJS}
-		ar rcs ${NAME} ${OBJS}
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-all:	${NAME}
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		${RM} ${OBJS}
+	$(RM) $(OBJS)
 
 fclean: clean
-		${RM} ${NAME}
+	$(RM) $(NAME)
 
 re: fclean all
 

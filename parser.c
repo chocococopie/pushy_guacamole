@@ -23,7 +23,8 @@ int	fill_stack(t_stack *a, char **argv, int count)
 		a->size++;
 		i++;
 	}
-	assign_indexes(a);
+	if (!assign_indexes(a))
+		return (0);
 	return (1);
 }
 

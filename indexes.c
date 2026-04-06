@@ -1,16 +1,18 @@
 #include "push_swap.h"
 
-int	*copy_array(t_stack *s)
+static int	*copy_array(t_stack *s)
 {
 	int		*arr;
 	int		i;
 	t_node	*cur;
 
-	i = 0;
+	if (!s || s->size == 0)
+		return (NULL);
 	arr = malloc(sizeof(int) * s->size);
 	if (!arr)
-		error_return();
+		return (NULL);
 	cur = s->top;
+	i = 0;
 	while (i < s->size)
 	{
 		arr[i] = cur->value;
@@ -20,7 +22,7 @@ int	*copy_array(t_stack *s)
 	return (arr);
 }
 
-void	bubble_sort(int *arr, int size)
+static void	bubble_sort(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -44,44 +46,43 @@ void	bubble_sort(int *arr, int size)
 	}
 }
 
-int	find_index(int *arr, int size, int value)
+static int	find_index(int *arr, int size, int value)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		if (arr[i] != value)
-			i++;
-		else
+		if (arr[i] == value)
 			return (i);
+		i++;
 	}
 	return (-1);
 }
 
-void	assign_index_to_nodes(t_stack *s, int *sorted_arr)
+static void	assign_index_to_nodes(t_stack *s, int *sorted_arr)
 {
-	t_node *cur;
-	int i;
+	t_node	*cur;
 
 	cur = s->top;
 	while (cur)
 	{
-		i = find_index(sorted_arr, s->size, cur->value);
-		cur->index = i;
+		cur->index = find_index(sorted_arr, s->size, cur->value);
 		cur = cur->next;
 	}
 }
 
-void	assign_indexes(t_stack *s)
+int	assign_indexes(t_stack *s)
 {
 	int	*values;
-	int	size;
 
-	size = s->size;
+	if (!s || s->size == 0)
+		return (1);
 	values = copy_array(s);
-	bubble_sort(values, size);
-    assign_index_to_nodes(s, values);
-    free(values);
+	if (!values)
+		return (0);
+	bubble_sort(values, s->size);
+	assign_index_to_nodes(s, values);
+	free(values);
+	return (1);
 }
-

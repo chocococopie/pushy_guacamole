@@ -2,7 +2,14 @@
 
 void	put_op(const char *op)
 {
-	write(1, op, 3);
+	int	i;
+
+	i = 0;
+	while (op[i])
+	{
+		write(1, &op[i], 1);
+		i++;
+	}
 	write(1, "\n", 1);
 }
 

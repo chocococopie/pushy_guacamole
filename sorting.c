@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-// sort_stack()
+// stack_size()
 
 int	stack_size(t_stack *s)
 {
-	if (s)
-		return (s->size);
-	return (0);
+	if (!s)
+		return (0);
+	return (s->size);
 }
 
 void	sort_stack(t_stack **a, t_stack **b)
@@ -14,6 +14,8 @@ void	sort_stack(t_stack **a, t_stack **b)
 	int	size;
 
 	size = stack_size(*a);
+	if (is_sorted(*a))
+		return ;
 	if (size == 2)
 	{
 		if ((*a)->top->index > (*a)->top->next->index)
@@ -30,45 +32,72 @@ void	sort_stack(t_stack **a, t_stack **b)
 		sorting_45(a, b);
 		return ;
 	}
-	// 6+ nodes:
 	radix_sort(a, b);
 }
 
 void	sorting_3(t_stack **a)
 {
-	if ((*a)->top->index > (*a)->top->next->index
-		&& (*a)->top->next->index > (*a)->top->next->next->index)
+	int	top;
+	int	mid;
+	int	bot;
+
+	top = (*a)->top->index;
+	mid = (*a)->top->next->index;
+	bot = (*a)->top->next->next->index;
+	if (top > mid && mid < bot && top < bot)
+		sa(*a);
+	else if (top > mid && mid > bot && top > bot)
 	{
 		sa(*a);
 		rra(*a);
 	}
-	else if ((*a)->top->index > (*a)->top->next->index)
-		sa(*a);
-	else if ((*a)->top->next->index > (*a)->top->next->next->index)
+	else if (top > mid && mid < bot && top > bot)
+		ra(*a);
+	else if (top < mid && mid > bot && top < bot)
 	{
-		if ((*a)->top->index > (*a)->top->next->next->index)
-		{
-			sa(*a);
-			ra(*a);
-		}
-		else
-			ra(*a);
+		sa(*a);
+		ra(*a);
 	}
+	else if (top < mid && mid > bot && top > bot)
+		rra(*a);
 }
 
-// 4–5 nodes: move smallest values to b until 3 remain in a:
+static void	push_min_to_b(t_stack **a, t_stack **b, int min_index)
+{
+	t_node	*cur;
+	int		pos;
+	int		size;
+
+	cur = (*a)->top;
+	pos = 0;
+	size = stack_size(*a);
+	while (cur && cur->index != min_index)
+	{
+		cur = cur->next;
+		pos++;
+	}
+	if (pos <= size / 2)
+	{
+		while ((*a)->top->index != min_index)
+			ra(*a);
+	}
+	else
+	{
+		while ((*a)->top->index != min_index)
+			rra(*a);
+	}
+	pb(*a, *b);
+}
 
 void	sorting_45(t_stack **a, t_stack **b)
 {
-	// Push elements from a to b until a has 3 elements
-	while (stack_size(*a) > 3)
-		pb(*a, *b);
-	// Now sort the 3 remaining nodes in a
-	sort_stack(a, b);
-	// Push back all from b into a
+	int	size;
+
+	size = stack_size(*a);
+	if (size == 5)
+		push_min_to_b(a, b, 0);
+	push_min_to_b(a, b, (size == 5) ? 1 : 0);
+	sorting_3(a);
 	while (stack_size(*b) > 0)
 		pa(*a, *b);
-	// Rotate a so the node with index 0 (smallest) is on top
-	while ((*a)->top->index != 0)
-		rra(*a);
 }

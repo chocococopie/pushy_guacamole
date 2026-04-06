@@ -44,7 +44,7 @@ void	add_back(t_stack *a, t_node *node);
 int	exists_in_stack(t_stack *a, int value);
 long	ft_atol(const char *str);
 int		is_numeric(char *str);
-void	assign_indexes(t_stack *s);
+int	assign_indexes(t_stack *s);
 
 // split
 
