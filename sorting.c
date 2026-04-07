@@ -6,7 +6,7 @@
 /*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 05:22:47 by dishagia          #+#    #+#             */
-/*   Updated: 2026/04/07 05:22:47 by dishagia         ###   ########.fr       */
+/*   Updated: 2026/04/07 18:54:55 by dishagia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ void	sorting_45(t_stack **a, t_stack **b)
 	size = stack_size(*a);
 	if (size == 5)
 		push_min_to_b(a, b, 0);
-	push_min_to_b(a, b, (size == 5) ? 1 : 0);
+	if (size == 5)
+		push_min_to_b(a, b, 1);
+	else
+		push_min_to_b(a, b, 0);
 	sorting_3(a);
 	while (stack_size(*b) > 0)
 		pa(*a, *b);

@@ -6,7 +6,7 @@
 /*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 05:22:57 by dishagia          #+#    #+#             */
-/*   Updated: 2026/04/07 05:22:58 by dishagia         ###   ########.fr       */
+/*   Updated: 2026/04/07 19:07:52 by dishagia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,34 @@ char	*copy_word(const char *s, int start, int len)
 	return (word);
 }
 
+static int	fill_one_word(char **result, const char *s, char c, int *index)
+{
+	int	start;
+	int	len;
+
+	start = 0;
+	while (s[start] == c)
+		start++;
+	len = 0;
+	while (s[start + len] && s[start + len] != c)
+		len++;
+	result[*index] = copy_word(s, start, len);
+	if (!result[*index])
+	{
+		while (*index > 0)
+			free(result[--(*index)]);
+		free(result);
+		return (0);
+	}
+	(*index)++;
+	return (1);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	int		words;
 	int		i;
-	int		start;
-	int		len;
 
 	if (!s)
 		return (NULL);
@@ -61,24 +82,10 @@ char	**ft_split(char const *s, char c)
 	if (!result)
 		return (NULL);
 	i = 0;
-	start = 0;
 	while (i < words)
 	{
-		while (s[start] == c)
-			start++;
-		len = 0;
-		while (s[start + len] && s[start + len] != c)
-			len++;
-		result[i] = copy_word(s, start, len);
-		if (!result[i])
-		{
-			while (i > 0)
-				free(result[--i]);
-			free(result);
+		if (!fill_one_word(result, s, c, &i))
 			return (NULL);
-		}
-		start += len;
-		i++;
 	}
 	result[i] = NULL;
 	return (result);

@@ -6,12 +6,12 @@
 /*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 05:21:24 by dishagia          #+#    #+#             */
-/*   Updated: 2026/04/07 05:25:05 by dishagia         ###   ########.fr       */
+/*   Updated: 2026/04/07 18:56:48 by dishagia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <limits.h>
 # include <stdlib.h>
