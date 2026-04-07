@@ -1,45 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_and_free.c                                   :+:      :+:    :+:   */
+/*   op1.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/07 05:11:57 by dishagia          #+#    #+#             */
-/*   Updated: 2026/04/07 05:12:00 by dishagia         ###   ########.fr       */
+/*   Created: 2026/04/07 05:37:09 by dishagia          #+#    #+#             */
+/*   Updated: 2026/04/07 05:37:10 by dishagia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error_return(void)
+void	put_op(const char *op)
 {
-	write(2, "Error\n", 6);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (op[i])
+	{
+		write(1, &op[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
 }
 
-void	free_stacks(t_stack *a, t_stack *b)
+void	sa(t_stack *a)
 {
-	t_node	*tmp;
+	swap_first_two(a);
+	put_op("sa");
+}
 
-	if (a)
-	{
-		while (a->top)
-		{
-			tmp = a->top;
-			a->top = a->top->next;
-			free(tmp);
-		}
-		free(a);
-	}
-	if (b)
-	{
-		while (b->top)
-		{
-			tmp = b->top;
-			b->top = b->top->next;
-			free(tmp);
-		}
-		free(b);
-	}
+void	sb(t_stack *b)
+{
+	swap_first_two(b);
+	put_op("sb");
+}
+
+void	ss(t_stack *a, t_stack *b)
+{
+	swap_first_two(a);
+	swap_first_two(b);
+	put_op("ss");
+}
+
+void	pa(t_stack *a, t_stack *b)
+{
+	push_top(b, a);
+	put_op("pa");
 }

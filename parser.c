@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 05:21:15 by dishagia          #+#    #+#             */
+/*   Updated: 2026/04/07 05:21:16 by dishagia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	fill_stack(t_stack *a, char **argv, int count)
@@ -76,9 +88,9 @@ int	exists_in_stack(t_stack *a, int value)
 
 long	ft_atol(const char *str)
 {
-	long res;
-	int sign;
-	int i;
+	long	res;
+	int		sign;
+	int		i;
 
 	res = 0;
 	sign = 1;

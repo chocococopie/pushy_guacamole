@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_helpers.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 05:10:12 by dishagia          #+#    #+#             */
+/*   Updated: 2026/04/07 05:10:27 by dishagia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap_first_two(t_stack *s)
@@ -46,8 +58,8 @@ void	rotate_up(t_stack *s)
 
 void	rotate_down(t_stack *s)
 {
-	t_node *prev;
-	t_node *last;
+	t_node	*prev;
+	t_node	*last;
 
 	if (!s || s->size < 2)
 		return ;

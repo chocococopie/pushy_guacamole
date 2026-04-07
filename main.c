@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 05:12:13 by dishagia          #+#    #+#             */
+/*   Updated: 2026/04/07 05:12:14 by dishagia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -52,23 +64,17 @@ void	free_split(char **split)
 	free(split);
 }
 
-// error_return() +
-// sort_stack()
-// free_stacks() +
-
 int	init_stacks(t_stack **a, t_stack **b)
 {
 	*a = malloc(sizeof(t_stack));
 	if (!*a)
 	{
-		// return error ↓
 		return (0);
 	}
 	*b = malloc(sizeof(t_stack));
 	if (!*b)
 	{
 		free(*a);
-		// return error ↓
 		return (0);
 	}
 	(*a)->top = NULL;
@@ -80,9 +86,9 @@ int	init_stacks(t_stack **a, t_stack **b)
 
 int	handle_args(int argc, char **argv, t_stack *a)
 {
-	char **args;
-	int count;
-	int i;
+	char	**args;
+	int		count;
+	int		i;
 
 	args = NULL;
 	count = 0;
@@ -92,7 +98,6 @@ int	handle_args(int argc, char **argv, t_stack *a)
 		args = ft_split(argv[1], ' ');
 		if (!args)
 			return (0);
-
 		while (args[count])
 			count++;
 		if (!fill_stack(a, args, count))

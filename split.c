@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 05:22:57 by dishagia          #+#    #+#             */
+/*   Updated: 2026/04/07 05:22:58 by dishagia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	count_words(const char *s, char c)
@@ -36,11 +48,11 @@ char	*copy_word(const char *s, int start, int len)
 
 char	**ft_split(char const *s, char c)
 {
-	char **result;
-	int words;
-	int i;
-	int start;
-	int len;
+	char	**result;
+	int		words;
+	int		i;
+	int		start;
+	int		len;
 
 	if (!s)
 		return (NULL);
