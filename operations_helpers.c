@@ -6,7 +6,7 @@
 /*   By: dishagia <dishagia@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 05:10:12 by dishagia          #+#    #+#             */
-/*   Updated: 2026/04/07 05:10:27 by dishagia         ###   ########.fr       */
+/*   Updated: 2026/04/07 19:20:50 by dishagia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	rotate_up(t_stack *s)
 	if (!s || s->size < 2)
 		return ;
 	first = s->top;
-	s->top = first->next;
-	first->next = NULL;
 	last = s->top;
 	while (last->next)
 		last = last->next;
+	s->top = first->next;
+	first->next = NULL;
 	last->next = first;
 }
 
